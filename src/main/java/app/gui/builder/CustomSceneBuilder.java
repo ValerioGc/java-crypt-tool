@@ -23,16 +23,19 @@ import javafx.scene.layout.VBox;
 public class CustomSceneBuilder {
 
     public static Scene createScene() {
+    	
+	// Window
         VBox root = new VBox(25);
         root.setPadding(new Insets(AppConfig.VIEW_PADDING));
         root.setAlignment(Pos.TOP_CENTER);
 
-        // Algorithm
+        
+    // Algorithm
         HBox algorithmBox = CustomInputBuilder.createAlgorithmRow();
 
         ComboBox<String> algorithmSelector = new ComboBox<>();
         algorithmSelector.getItems().addAll(AppConfig.ALGORITHMS.keySet());
-        algorithmSelector.setValue(AppConfig.ALGORITHMS.keySet().iterator().next());
+        algorithmSelector.setValue(null);
         algorithmSelector.valueProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
                 String algorithmName = newValue;
@@ -41,10 +44,11 @@ public class CustomSceneBuilder {
             }
         });
 
+    // Salting key input
         HBox saltingBox = CustomInputBuilder.createSaltingInput();
         TextField saltingInput = (TextField) saltingBox.getChildren().get(2);
 
-        // Password field
+    // Password field		
         HBox passwordBox = CustomInputBuilder.createPasswordInput();
         TextField passwordInput = (TextField) passwordBox.getChildren().get(2);
 
@@ -52,9 +56,9 @@ public class CustomSceneBuilder {
         HBox radioButtonsBox = CustomRadioBuilder.createRadioButtonsRow();
         ToggleGroup operationGroup = ((RadioButton) radioButtonsBox.getChildren().get(0)).getToggleGroup();
 
-        // Run button and result
+    // Run button and result
         Label resultField = new Label();
-        resultField.setStyle("-fx-wrap-text: true; -fx-text-alignment: center;");
+        resultField.getStyleClass().add("result_field");
         resultField.setVisible(false);
 
         Button copyButton = CustomButtonBuilder.createCopyButton(resultField);
@@ -80,6 +84,7 @@ public class CustomSceneBuilder {
             updateRunButtonState(runButton, saltingInput, passwordInput, algorithmSelector);
         });
 
+        
         root.getChildren().addAll(
             algorithmBox,
             saltingBox,
@@ -101,10 +106,14 @@ public class CustomSceneBuilder {
     }
 
     private static void updateRunButtonState(Button runButton, TextField saltingInput, TextField passwordInput, ComboBox<String> algorithmSelector) {
-        boolean disable = saltingInput.getText().isEmpty()
-            || passwordInput.getText().isEmpty()
-            || algorithmSelector.getValue() == null;
+        boolean disable = !saltingInput.getText().isEmpty()
+            && !passwordInput.getText().isEmpty()
+            && algorithmSelector.getValue() != null;
 
-        runButton.setDisable(disable);
+        
+        if(!disable)
+            runButton.getStyleClass().add("disabled");
+        else
+        	runButton.getStyleClass().remove("disabled");
     }
 }

@@ -1,9 +1,7 @@
-/* Labels */
 .form-label {
 	-fx-font-size: 14px;
 	-fx-font-weight: 600;
 }
-
 
 /* Input Fields */
 .text-field {
@@ -22,9 +20,10 @@
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 5, 0.3, 0, 2);
 }
 
-
-
-/* Error messages */
+.result_field {
+	-fx-wrap-text: true; 
+	-fx-text-alignment: center;
+}
 
 .error-message {
 	-fx-font-weight:bold;

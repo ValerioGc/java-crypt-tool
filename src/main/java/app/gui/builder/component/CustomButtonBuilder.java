@@ -4,6 +4,7 @@ import app.business.EncryptDecryptLogic;
 import app.config.AppConfig;
 import app.text.AppMessages;
 import app.util.AppUtils;
+
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -35,10 +36,10 @@ public class CustomButtonBuilder {
      */
     public static Button createRunButton(Label resultField, Button copyButton, ToggleGroup operationGroup, ComboBox<String> algorithmSelector, TextField saltingInput, TextField passwordInput) {
         Button runButton = new Button(AppMessages.BUTTON_RUN_LABEL);
-        runButton.getStyleClass().add("btn-primary");
-        runButton.setDisable(true);
-
-        // Tooltip for the Run button
+        runButton.getStyleClass().add("btn_primary");
+        runButton.getStyleClass().add("disabled");
+      
+        // Tooltip
         Tooltip runTooltip = new Tooltip(AppMessages.BUTTON_RUN_ERROR_TOOLTIP);
         Tooltip.install(runButton, runTooltip);
 
@@ -47,6 +48,10 @@ public class CustomButtonBuilder {
             String input = passwordInput.getText();
             String algorithm = algorithmSelector.getValue();
 
+            System.out.println("salt: " + salt + " input: " +input + " algorithm: " +algorithm);
+            if(salt == null || input == null || algorithm == null)
+            	return;
+            
             RadioButton selectedOption = (RadioButton) operationGroup.getSelectedToggle();
             if (selectedOption.getText().equals(AppMessages.RADIO_ENCRYPT)) {
                 resultField.setText(EncryptDecryptLogic.encrypt(salt, input, algorithm));
@@ -62,12 +67,11 @@ public class CustomButtonBuilder {
             copyButton.setVisible(true);
         });
 
-        // Update tooltip dynamically based on the button state
         runButton.disableProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue) {
-                runTooltip.setText(AppMessages.BUTTON_RUN_ERROR_TOOLTIP); // Tooltip for disabled state
+                runTooltip.setText(AppMessages.BUTTON_RUN_ERROR_TOOLTIP); 
             } else {
-                runTooltip.setText(AppMessages.BUTTON_RUN_TOOLTIP); // Tooltip for enabled state
+                runTooltip.setText(AppMessages.BUTTON_RUN_TOOLTIP);
             }
         });
 
@@ -84,7 +88,7 @@ public class CustomButtonBuilder {
     public static Button createCopyButton(Label resultField) {
         Button copyButton = new Button();
         copyButton.setGraphic(AppUtils.loadImage(AppConfig.COPY_ICON));
-        copyButton.getStyleClass().add("btn-primary");
+        copyButton.getStyleClass().add("btn_primary");
         copyButton.setVisible(false);
 
         // Tooltip for the Copy button

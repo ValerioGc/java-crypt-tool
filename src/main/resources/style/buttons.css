@@ -1,5 +1,5 @@
 /* Pulsanti */
-.btn-primary {
+.btn_primary {
     -fx-background-color: #0056b3;
     -fx-text-fill: white;
     -fx-font-size: 14px;
@@ -7,14 +7,25 @@
     -fx-padding: 8 15;
     -fx-border-radius: 5px;
     -fx-background-radius: 5px;
-    -fx-cursor: hand; /* Cursore quando attivo */
+    -fx-cursor: hand; 
 }
 
-.btn-primary:disabled {
-    -fx-background-color: #cccccc; /* Colore grigio per disabilitato */
-    -fx-cursor: not-allowed; /* Cursore quando disabilitato */
-}
-
-.btn-primary:hover {
+.btn_primary:not(.disabled):hover {
     -fx-background-color: #003d80;
+}
+
+.disabled {
+	-fx-pointer-events:none;
+	-fx-opacity: 0.4;
+	-fx-cursor: default; 
+}
+
+.tooltip {
+    -fx-background-color: #333333;
+    -fx-text-fill: white;
+    -fx-padding: 5px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
 }

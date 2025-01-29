@@ -3,8 +3,6 @@
 @import url('style/text.css');
 @import url('style/select.css');
 
-/* Layout dinamico per HBox */
 .hbox-container {
     -fx-fill-width: true;
 }
-
