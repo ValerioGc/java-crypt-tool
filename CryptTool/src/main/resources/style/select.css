@@ -1,0 +1,12 @@
+/* Stile specifico per SELECTOR */
+
+.combo-box {
+    -fx-pref-width: 100%; 
+}
+
+.combo-box {
+    -fx-pref-width: 250px; 
+    -fx-padding: 5px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}

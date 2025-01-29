@@ -1,0 +1,20 @@
+/* Pulsanti */
+.btn-primary {
+    -fx-background-color: #0056b3;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-padding: 8 15;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-cursor: hand; /* Cursore quando attivo */
+}
+
+.btn-primary:disabled {
+    -fx-background-color: #cccccc; /* Colore grigio per disabilitato */
+    -fx-cursor: not-allowed; /* Cursore quando disabilitato */
+}
+
+.btn-primary:hover {
+    -fx-background-color: #003d80;
+}
