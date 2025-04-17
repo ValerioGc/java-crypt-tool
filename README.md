@@ -1,7 +1,7 @@
 
 # **Crypt tool**
 
-*Description*
+*Simple java desktop tool for encypting/decrypting string using diferent algorithms made with JavaFX*
 
 ## Technologies
 
@@ -10,27 +10,23 @@
 
 ## Libraries
 
-- **Jaysypt**
-- Bounty castle
-- JavaFX
-- Log4j
+- **Jaysypt** - Used for the encrypting process
+- Bounty castle - Used for the algorithms
+- JavaFX - Used for the application GUI
+- Log4j - Used for logging
 
 
 ## Logging
-
+*---*
 
 ## Installation
-
+```
 mvn clean install
-
+```
+```
 mvn package
-
+```
+```
 java -jar target/CryptTool-0.0.1.jar
+```
 
-
----
-
-
-#### TODO:
-- Fix label selector con nome algoritmo
-- Fix tooltip bottoni 
